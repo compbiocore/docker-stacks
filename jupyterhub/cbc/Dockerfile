@@ -93,7 +93,7 @@ RUN wget https://s3.us-east-2.amazonaws.com/brown-cbc-amis/package_list.txt \
 
 USER $NB_UID
 
-RUN cd /home/$NB_UID
+RUN cd /home/$NB_UID \
   && wget https://cran.r-project.org/src/base/R-3/R-3.5.1.tar.gz \
   && tar -xf R-3.5.1.tar.gz \
   && cd R-3.5.1 \
