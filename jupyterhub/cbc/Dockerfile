@@ -85,3 +85,19 @@ RUN conda install -c conda-forge altair vega_datasets &&\
 # *********************R Extras ***************************
 # R packages including IRKernel which gets installed globally.
 
+USER root
+
+RUN wget https://s3.us-east-2.amazonaws.com/brown-cbc-amis/package_list.txt \
+  && apt-get update \
+  && apt-get -y install $(grep -vE "^\s*#" package_list.txt  | tr "\n" " ")
+
+USER $NB_UID
+
+RUN cd /home/$NB_UID
+  && wget https://cran.r-project.org/src/base/R-3/R-3.5.1.tar.gz \
+  && tar -xf R-3.5.1.tar.gz \
+  && cd R-3.5.1 \
+  && ./configure --with-x=no --with-cairo=yes --with-libpng=yes --enable-R-shlib --prefix=$HOME \
+  && make \
+  && echo "PATH=/home/$NB_UID/R-3.5.1/bin:$PATH" >> /home/$NB_UID/.profile
+  
