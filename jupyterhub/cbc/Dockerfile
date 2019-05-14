@@ -93,11 +93,11 @@ USER root
 
 USER $NB_UID
 
-RUN cd /home/$NB_UID \
+RUN cd /home/$NB_USER \
   && wget https://cran.r-project.org/src/base/R-3/R-3.5.1.tar.gz \
   && tar -xf R-3.5.1.tar.gz \
   && cd R-3.5.1 \
   && ./configure --with-x=no --with-cairo=yes --with-libpng=yes --enable-R-shlib --prefix=$HOME \
   && make \
-  && echo "PATH=/home/$NB_UID/R-3.5.1/bin:$PATH" >> /home/$NB_UID/.profile
+  && echo "PATH=/home/$NB_USER/R-3.5.1/bin:$PATH" >> /home/$NB_USER/.profile
   
