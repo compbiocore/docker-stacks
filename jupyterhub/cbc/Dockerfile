@@ -90,7 +90,8 @@ USER root
 RUN apt-get install -y libreadline-dev \
   && apt-get install -y zlib1g-dev \
   && apt-get install -y libbz2-dev \
-  && apt-get install -y liblzma-dev
+  && apt-get install -y liblzma-dev \
+  && apt-get install -y libpcre3-dev
 
 #RUN wget https://s3.us-east-2.amazonaws.com/brown-cbc-amis/package_list.txt \
 #  && apt-get update \
