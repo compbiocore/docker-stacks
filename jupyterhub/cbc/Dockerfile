@@ -87,6 +87,8 @@ RUN conda install -c conda-forge altair vega_datasets &&\
 
 USER root
 
+apt-get install libreadline-dev
+
 #RUN wget https://s3.us-east-2.amazonaws.com/brown-cbc-amis/package_list.txt \
 #  && apt-get update \
 #  && apt-get -y install $(grep -vE "^\s*#" package_list.txt  | tr "\n" " ")
