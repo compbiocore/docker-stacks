@@ -28,8 +28,7 @@ RUN wget https://cran.r-project.org/src/base/R-3/R-3.5.3.tar.gz \
   && tar -xf R-3.5.3.tar.gz \
   && cd R-3.5.3 \
   && ./configure --with-x=no --with-cairo=yes --with-libpng=yes --enable-R-shlib --prefix=$HOME \
-  && make \
-  && echo "PATH=/home/$NB_USER/R-3.5.3/bin:$PATH" >> /home/$NB_USER/.profile
+  && make
 
 ENV PATH=/home/$NB_USER/R-3.5.3/bin:$PATH
 
