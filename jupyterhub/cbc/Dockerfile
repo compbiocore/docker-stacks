@@ -31,6 +31,8 @@ RUN wget https://cran.r-project.org/src/base/R-3/R-3.5.3.tar.gz \
   && make \
   && echo "PATH=/home/$NB_USER/R-3.5.3/bin:$PATH" >> /home/$NB_USER/.profile
 
+ENV PATH=/home/$NB_USER/R-3.5.3/bin:$PATH
+
 # *********************Extensions ***************************
 
 # Install google-drive extension
@@ -62,4 +64,6 @@ RUN rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
 # *********************R Extras ***************************
 # R packages including IRKernel which gets installed globally.
 
-
+RUN wget https://raw.githubusercontent.com/compbiocore/docker-stacks/master/jupyterhub/r_scripts/irkernel.R \
+  && Rscript irkernel.R \
+  && fix-permissions /home/$NB_USER
