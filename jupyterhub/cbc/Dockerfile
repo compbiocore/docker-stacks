@@ -10,6 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get -yq dist-upgrade \
     && apt-get install -yq --no-install-recommends \
     libssl-dev \
+    libssh2-1-dev \
     openssh-client \
     vim \ 
     && apt-get clean \
@@ -25,13 +26,14 @@ RUN npm i npm@latest -g
 
 # *********************Compile R From Source*****************
 
-RUN wget https://cran.r-project.org/src/base/R-3/R-3.5.3.tar.gz \
+RUN cd /usr/local/ \
+  && wget https://cran.r-project.org/src/base/R-3/R-3.5.3.tar.gz \
   && tar -xf R-3.5.3.tar.gz \
   && cd R-3.5.3 \
   && ./configure --with-x=no --with-cairo=yes --with-libpng=yes --enable-R-shlib --prefix=$HOME \
   && make
 
-ENV PATH=/home/$NB_USER/R-3.5.3/bin:$PATH
+ENV PATH=/usr/local/R-3.5.3/bin:$PATH
 
 # *********************Extensions ***************************
 
@@ -64,6 +66,7 @@ RUN rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
 # *********************R Extras ***************************
 # R packages including IRKernel which gets installed globally.
 
-RUN wget https://raw.githubusercontent.com/compbiocore/docker-stacks/master/jupyterhub/r_scripts/irkernel.R \
+RUN cd /usr/local/ \
+  && wget https://raw.githubusercontent.com/compbiocore/docker-stacks/master/jupyterhub/r_scripts/irkernel.R \
   && Rscript irkernel.R \
-  && fix-permissions /home/$NB_USER
+  && fix-permissions /usr/local/
