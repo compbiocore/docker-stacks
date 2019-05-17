@@ -26,14 +26,14 @@ RUN npm i npm@latest -g
 
 # *********************Compile R From Source*****************
 
-RUN cd /usr/local/ \
+RUN cd /opt/ \
   && wget https://cran.r-project.org/src/base/R-3/R-3.5.3.tar.gz \
   && tar -xf R-3.5.3.tar.gz \
   && cd R-3.5.3 \
   && ./configure --with-x=no --with-cairo=yes --with-libpng=yes --enable-R-shlib --prefix=$HOME \
   && make
 
-ENV PATH=/usr/local/R-3.5.3/bin:$PATH
+ENV PATH=/opt/R-3.5.3/bin:$PATH
 
 # *********************Extensions ***************************
 
@@ -66,7 +66,7 @@ RUN rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
 # *********************R Extras ***************************
 # R packages including IRKernel which gets installed globally.
 
-RUN cd /usr/local/ \
+RUN cd /opt/ \
   && wget https://raw.githubusercontent.com/compbiocore/docker-stacks/master/jupyterhub/r_scripts/irkernel.R \
   && Rscript irkernel.R \
   && fix-permissions /usr/local/
