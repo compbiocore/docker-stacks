@@ -72,4 +72,4 @@ RUN rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
 RUN cd /opt/ \
   && wget https://raw.githubusercontent.com/compbiocore/docker-stacks/master/jupyterhub/r_scripts/irkernel.R \
   && Rscript irkernel.R \
-  && fix-permissions /usr/local/share/jupyter
+  && fix-permissions /usr/local/share/jupyter/kernels
