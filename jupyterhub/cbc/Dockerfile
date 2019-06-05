@@ -17,6 +17,9 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     && apt-get -y build-dep r-base \
     && apt-get clean
 
+RUN mkdir /usr/local/share/jupyter \
+  & chmod 755 /usr/local/share/jupyter
+
 
 USER $NB_UID
 
@@ -68,6 +71,5 @@ RUN rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
 
 RUN cd /opt/ \
   && wget https://raw.githubusercontent.com/compbiocore/docker-stacks/master/jupyterhub/r_scripts/irkernel.R \
-  && mkdir /usr/local/share/jupyter \
   && Rscript irkernel.R \
   && fix-permissions /usr/local/share/jupyter
