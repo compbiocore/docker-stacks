@@ -20,7 +20,7 @@ RUN apt-get update && apt-get -yq dist-upgrade \
 
 RUN mkdir /usr/local/share/jupyter \
   && mkdir /usr/local/share/jupyter/kernels \
-  && chmod 755 /usr/local/share/jupyter/kernels
+  && chmod 777 /usr/local/share/jupyter/kernels
 
 
 USER $NB_UID
