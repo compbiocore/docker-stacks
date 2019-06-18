@@ -6,22 +6,9 @@ USER root
 
 USER $NB_UID
 
-RUN pip install --upgrade pip
-RUN npm i npm@latest -g
+# ********************* Bioconductor Packages ***************************
 
-# *********************Python Deep learning libraries ***************************
-# Pytorch
-RUN conda install --quiet --yes \
-    'pytorch=1.0.*' 'torchvision=0.2.*' -c pytorch && \
-    conda clean -tipsy && \
-    fix-permissions $CONDA_DIR && \
-    fix-permissions /home/$NB_USER
-
-# Tensorflow
-# Keras
-RUN conda install --quiet --yes \
-    'tensorflow-gpu=1.12.*'\
-    'keras-gpu=2.2.*' && \
-    conda clean -tipsy && \
-    fix-permissions $CONDA_DIR && \
-    fix-permissions /home/$NB_USER
+RUN cd /opt/ \
+  && wget https://raw.githubusercontent.com/compbiocore/docker-stacks/master/jupyterhub/r_scripts/install_all_deseq.R \
+  && Rscript install_all_deseq.R \
+  && fix-permissions /opt/R-3.5.3/
