@@ -1,4 +1,4 @@
-FROM compbicore/jupyterhub-cbc:latest
+FROM compbiocore/jupyterhub-cbc:latest
 
 MAINTAINER Jupyter Help <jupyter-help@brown.edu>
 
