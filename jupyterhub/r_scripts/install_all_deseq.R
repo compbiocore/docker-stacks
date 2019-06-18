@@ -1,4 +1,4 @@
-install.packages("BiocManager")
+install.packages("BiocManager", repos = "http://cran.us.r-project.org"))
 
 BiocManager::install("ALL")
 BiocManager::install("AnnotationDbi")
