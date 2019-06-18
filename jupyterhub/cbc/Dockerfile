@@ -11,6 +11,7 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     && apt-get install -yq --no-install-recommends \
     libssl-dev \
     libssh2-1-dev \
+    libxml2 \
     openssh-client \
     vim \ 
     && apt-get clean \
