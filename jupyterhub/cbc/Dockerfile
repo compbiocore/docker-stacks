@@ -12,6 +12,7 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     libssl-dev \
     libssh2-1-dev \
     libxml2 \
+    libxml2-dev \
     openssh-client \
     vim \ 
     && apt-get clean \
