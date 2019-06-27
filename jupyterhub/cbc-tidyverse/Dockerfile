@@ -1,0 +1,17 @@
+FROM compbiocore/jupyterhub-cbc:latest
+
+MAINTAINER Jupyter Help <jupyter-help@brown.edu>
+
+USER root
+
+RUN apt-get update &&
+  apt-get install -y libtiff-dev
+
+USER $NB_UID
+
+# ********************* Bioconductor Packages ***************************
+
+RUN cd /opt/ \
+  && wget https://raw.githubusercontent.com/compbiocore/docker-stacks/master/jupyterhub/r_scripts/install_all_tidyverse.R \
+  && Rscript install_all_tudyverse.R \
+  && fix-permissions /opt/R-3.5.3/
