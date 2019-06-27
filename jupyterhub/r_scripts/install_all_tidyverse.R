@@ -1,3 +1,7 @@
 install.packages("BiocManager", repos = "http://cran.us.r-project.org")
 install.packages("dplyr", repos = "http://cran.us.r-project.org")
 install.packages("ggplot2", repos = "http://cran.us.r-project.org")
+install.packages("tidyverse", repos = "http://cran.us.r-project.org")
+install.packages("gridExtra", repos = "http://cran.us.r-project.org")
+install.packages("ggrepel", repos = "http://cran.us.r-project.org")
+install.packages("maps", repos = "http://cran.us.r-project.org")
