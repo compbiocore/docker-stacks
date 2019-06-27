@@ -4,8 +4,7 @@ MAINTAINER Jupyter Help <jupyter-help@brown.edu>
 
 USER root
 
-RUN apt-get update &&
-  apt-get install -y libtiff-dev
+RUN apt-get update && apt-get install -y libtiff-dev
 
 USER $NB_UID
 
