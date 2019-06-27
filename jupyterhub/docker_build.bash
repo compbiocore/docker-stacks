@@ -8,11 +8,16 @@ set -e
 DOCKER_REPO=""
 DOCKER_PUSH="docker push"
 FORCE=False
+NO_CACHE=False
 
 while getopts "fr:" opt; do
     echo $opt
 	case $opt in
 		f) FORCE=True 
+		;;
+		n) NO_CACHE=True
+		# force docker to build images with no cache
+		# (use when something in an internal r script changed but the dockerfile itself did not)
 		;;
 		r) DOCKER_REPO="$OPTARG" 
 		;;
@@ -56,7 +61,11 @@ do
 
 	IMAGE_NAME=jupyterhub-${IMAGE}
 	IMAGE_SPEC="${DOCKER_REPO}/${IMAGE_NAME}:${TAG}"
-	docker build -f ${IMAGE}/Dockerfile -t ${IMAGE_SPEC} .
+	if NO_CACHE; then
+		docker build --no-cache -f ${IMAGE}/Dockerfile -t ${IMAGE_SPEC} .
+	else
+		docker build -f ${IMAGE}/Dockerfile -t ${IMAGE_SPEC} .
+	fi
 	${DOCKER_PUSH} ${IMAGE_SPEC}
 	echo "Pushed ${IMAGE_SPEC}"
 
