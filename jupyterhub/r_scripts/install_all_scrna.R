@@ -1,0 +1,6 @@
+install.packages("BiocManager", repos = "http://cran.us.r-project.org")
+BiocManager::install("devtools")
+BiocManager::install("scater")
+BiocManager::install("scran")
+BiocManager::install("monocle")
+BiocManager::install("Seurat")
