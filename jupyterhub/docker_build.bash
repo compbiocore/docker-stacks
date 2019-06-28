@@ -61,7 +61,7 @@ do
 
 	IMAGE_NAME=jupyterhub-${IMAGE}
 	IMAGE_SPEC="${DOCKER_REPO}/${IMAGE_NAME}:${TAG}"
-	if NO_CACHE; then
+	if $NO_CACHE; then
 		docker build --no-cache -f ${IMAGE}/Dockerfile -t ${IMAGE_SPEC} .
 	else
 		docker build -f ${IMAGE}/Dockerfile -t ${IMAGE_SPEC} .
